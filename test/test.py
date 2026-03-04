@@ -3,7 +3,7 @@ from selene import browser, have
 
 @pytest.mark
 
-def test_registration_form(browser):
+def test_registration_form():
 
     browser.open('https://demoqa.com/automation-practice-form')
 
