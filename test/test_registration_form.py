@@ -42,7 +42,6 @@ def test_registration_form():
     browser.element('#submit').click()
 
     browser.element('#example-modal-sizes-title-lg').should(have.text('Thanks for submitting the form'))
-
     table = browser.element('.table-responsive')
     table.should(have.text('Jackie Chan'))
     table.should(have.text('chan@gmail.com'))
@@ -54,3 +53,4 @@ def test_registration_form():
     table.should(have.text('images.png'))
     table.should(have.text('9A Krasnoprudnaya Street'))
     table.should(have.text('NCR Delhi'))
+
