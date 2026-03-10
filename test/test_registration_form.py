@@ -1,4 +1,6 @@
-from selene import browser, have, be
+import os
+
+from selene import browser, have
 
 def test_registration_form():
 
@@ -26,7 +28,8 @@ def test_registration_form():
 
     browser.element('label[for="hobbies-checkbox-2"]').click()
 
-    browser.element('#uploadPicture').set_value('C:\\Users\\kstanila\\Pictures\\Screenshots\\Снимок экрана (1).png')
+    image_path = os.path.join(os.path.dirname(__file__), 'images.png')
+    browser.element('#uploadPicture').send_keys(image_path)
 
     browser.element('#currentAddress').type('9A Krasnoprudnaya Street')
 
@@ -39,4 +42,15 @@ def test_registration_form():
     browser.element('#submit').click()
 
     browser.element('#example-modal-sizes-title-lg').should(have.text('Thanks for submitting the form'))
-    browser.element('.table-responsive').should(have.text('Jackie Chan'))
+
+    table = browser.element('.table-responsive')
+    table.should(have.text('Jackie Chan'))
+    table.should(have.text('chan@gmail.com'))
+    table.should(have.text('Male'))
+    table.should(have.text('9245731531'))
+    table.should(have.text('24 May,2000'))
+    table.should(have.text('English'))
+    table.should(have.text('Reading'))
+    table.should(have.text('images.png'))
+    table.should(have.text('9A Krasnoprudnaya Street'))
+    table.should(have.text('NCR Delhi'))
